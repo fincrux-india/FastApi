@@ -2,6 +2,6 @@ from fastapi import FastAPI
 
 app=FastAPI()
 
-@app.add("/")
+@app.get("/")
 async def  root():
     return ("this is my first Fast API Get")
