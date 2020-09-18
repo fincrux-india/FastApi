@@ -34,4 +34,4 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 #Create a Base class
 Base = declarative_base()
 
-#H2 Step-2: Create the database models
+# Step-2: Create the database models
