@@ -8,3 +8,6 @@
 │       ├── __init__.py
 │       ├── items.py
 │       └── users.py
+
+
+uvicorn main:app --reload
