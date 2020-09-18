@@ -1,6 +1,6 @@
 # FastApi
 
-.
+
 ├── app
 │   ├── __init__.py
 │   ├── main.py
@@ -8,3 +8,6 @@
 │       ├── __init__.py
 │       ├── items.py
 │       └── users.py
+
+
+uvicorn main:app --reload
