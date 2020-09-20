@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from typing import Optional
 from pydantic import BaseModel
 app=FastAPI()
@@ -43,8 +43,9 @@ class Item(BaseModel):
     price:float
     tax: Optional[float]=None
 
+# Request Body + Query Parameter+ Additional Valiadtion using Query
 @app.post("/item/{item_id}")
-async def create_item(item:Item,q:Optional[str]=None):
+async def create_item(item:Item,q:Optional[str]=Query(None, max_length=50, min_length=2, regex=r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")):
     item_dict=item.dict()
     if item.tax:
         itemWithTax= item.price+item.tax
@@ -52,3 +53,5 @@ async def create_item(item:Item,q:Optional[str]=None):
     if q:
         item_dict.update({"q":q})
     return item_dict
+
+
