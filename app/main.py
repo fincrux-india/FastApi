@@ -44,8 +44,9 @@ class Item(BaseModel):
     tax: Optional[float]=None
 
 # Request Body + Query Parameter+ Additional Valiadtion using Query
+# ... is called ellipsis and placing it as a first parameter tells FastAPI that this value is required
 @app.post("/item/{item_id}")
-async def create_item(item:Item,q:Optional[str]=Query(None, max_length=50, min_length=2, regex=r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")):
+async def create_item(item:Item,q:Optional[str]=Query(..., max_length=50, min_length=2, regex=r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")):
     item_dict=item.dict()
     if item.tax:
         itemWithTax= item.price+item.tax
